@@ -1,0 +1,15 @@
+D:\ProjetoChatBack\MenriChatSolutionBack\InfraMenriChat\bin\Debug\net5.0\InfraMenriChat.deps.json
+D:\ProjetoChatBack\MenriChatSolutionBack\InfraMenriChat\bin\Debug\net5.0\InfraMenriChat.runtimeconfig.json
+D:\ProjetoChatBack\MenriChatSolutionBack\InfraMenriChat\bin\Debug\net5.0\InfraMenriChat.runtimeconfig.dev.json
+D:\ProjetoChatBack\MenriChatSolutionBack\InfraMenriChat\bin\Debug\net5.0\InfraMenriChat.dll
+D:\ProjetoChatBack\MenriChatSolutionBack\InfraMenriChat\bin\Debug\net5.0\ref\InfraMenriChat.dll
+D:\ProjetoChatBack\MenriChatSolutionBack\InfraMenriChat\bin\Debug\net5.0\InfraMenriChat.pdb
+D:\ProjetoChatBack\MenriChatSolutionBack\InfraMenriChat\obj\Debug\net5.0\InfraMenriChat.GeneratedMSBuildEditorConfig.editorconfig
+D:\ProjetoChatBack\MenriChatSolutionBack\InfraMenriChat\obj\Debug\net5.0\InfraMenriChat.AssemblyInfoInputs.cache
+D:\ProjetoChatBack\MenriChatSolutionBack\InfraMenriChat\obj\Debug\net5.0\InfraMenriChat.AssemblyInfo.cs
+D:\ProjetoChatBack\MenriChatSolutionBack\InfraMenriChat\obj\Debug\net5.0\InfraMenriChat.csproj.CoreCompileInputs.cache
+D:\ProjetoChatBack\MenriChatSolutionBack\InfraMenriChat\obj\Debug\net5.0\InfraMenriChat.dll
+D:\ProjetoChatBack\MenriChatSolutionBack\InfraMenriChat\obj\Debug\net5.0\ref\InfraMenriChat.dll
+D:\ProjetoChatBack\MenriChatSolutionBack\InfraMenriChat\obj\Debug\net5.0\InfraMenriChat.pdb
+D:\ProjetoChatBack\MenriChatSolutionBack\InfraMenriChat\obj\Debug\net5.0\InfraMenriChat.genruntimeconfig.cache
+D:\ProjetoChatBack\MenriChatSolutionBack\InfraMenriChat\obj\Debug\net5.0\InfraMenriChat.csproj.AssemblyReference.cache
