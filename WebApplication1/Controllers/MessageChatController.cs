@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebApplication1.services;
 
 namespace WebApplication1.Controllers
 {
@@ -15,9 +16,11 @@ namespace WebApplication1.Controllers
     public class MessageChatController : Controller
     {
         private readonly IMessageChatRepository _messageChatRepository;
-        public MessageChatController(IMessageChatRepository messageChatRepository)
+        private readonly ChatHub _chatHub;
+        public MessageChatController(IMessageChatRepository messageChatRepository, ChatHub chatHub)
         {
             _messageChatRepository = messageChatRepository;
+            _chatHub = chatHub;
         }
 
         [AllowAnonymous]
@@ -33,7 +36,9 @@ namespace WebApplication1.Controllers
             {
                 return BadRequest(e.Message);
             }
-        }
+        } 
+        
+      
         [HttpGet("{Id}")]
         public IActionResult GetById(Guid Id)
         {
@@ -46,6 +51,7 @@ namespace WebApplication1.Controllers
                 return BadRequest(e.Message);
             }
         }
+        [AllowAnonymous]
         [HttpPost()]
         public IActionResult Post(MessageChat messageChat)
         {

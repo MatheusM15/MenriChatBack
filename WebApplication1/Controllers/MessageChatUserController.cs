@@ -43,6 +43,22 @@ namespace WebApplication1.Controllers
                 return BadRequest(e.Message);
             }
         }
+
+        [AllowAnonymous]
+        [HttpGet("Byusuario/{Id}")]
+        public IActionResult GetAllByusuario(Guid Id)
+        {
+            try
+            {
+                var menssagem = _messageChatUserRepository.GetAllByusuario(Id);
+                return Ok(menssagem);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
         [HttpGet("{Id}")]
         public IActionResult GetById(Guid Id)
         {

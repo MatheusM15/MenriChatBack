@@ -12,7 +12,7 @@ namespace InfraMenriChat.Interface
 {
     public interface IUserRepository
     {
-        Task<UserViewModel> Register(UserViewModel userviewmodel);
+        Task<object> Register(UserViewModel userviewmodel);
        
         IEnumerable<User> GetAll();
         Task<SignInResult> Login(UserViewModel userViewModel);

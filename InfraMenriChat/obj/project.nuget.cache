@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "39WpHSyp+EHD5jy74x0lK+GZyPJ97B2+EGLR4zOrn0PjiWg9wTTacFSqHjBsXaCuQbuPVp+5sMC1STV3xD/fig==",
+  "dgSpecHash": "A9RlsHvXR4sHXR2eNcpY3WqrAONJhNbBKVMvTtFgwqTTh4oVEiHI8mo9ic2+TMZ8+qjP1Wo1+mTWCNb5YKbsDQ==",
   "success": true,
-  "projectFilePath": "D:\\ProjetoChatBack\\MenriChatSolutionBack\\InfraMenriChat\\InfraMenriChat.csproj",
+  "projectFilePath": "D:\\Projetos\\MenriChatBack\\InfraMenriChat\\InfraMenriChat.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\mathe\\.nuget\\packages\\automapper\\11.0.1\\automapper.11.0.1.nupkg.sha512",
     "C:\\Users\\mathe\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",

@@ -20,13 +20,13 @@ namespace WebApplication1.Controllers
     {
         private readonly IUserRepository _userRepository;
         private readonly ITokenRepository _tokenRepository;
-       
+
 
         public UserController(IUserRepository userRepository, ITokenRepository tokenRepository)
         {
             _userRepository = userRepository;
             _tokenRepository = tokenRepository;
-            
+
         }
 
         [AllowAnonymous]
@@ -37,9 +37,10 @@ namespace WebApplication1.Controllers
         }
         [AllowAnonymous]
         [HttpPost()]
-        public IActionResult Register(UserViewModel user)
+        public async Task<IActionResult> Register(UserViewModel user)
         {
-            return Ok(_userRepository.Register(user));
+            var teste = await _userRepository.Register(user);
+            return Ok(teste);
         }
         [AllowAnonymous]
         [HttpPost("login")]
@@ -54,7 +55,7 @@ namespace WebApplication1.Controllers
                 }
                 return Ok(user);
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 return BadRequest(e.Message);
             }

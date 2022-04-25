@@ -10,5 +10,7 @@ namespace InfraMenriChat.Interface
 {
     public interface IMessageChatUserRepository : IBaseEntityRespository<MessageChatUser>
     {
+        IEnumerable<MessageChat> GetAllByusuario(Guid UsuairoId);
+
     }
 }

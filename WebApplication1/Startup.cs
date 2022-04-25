@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WebApplication1.services;
 
 namespace WebApplication1
 {
@@ -45,12 +46,16 @@ namespace WebApplication1
             options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
             );
 
+            services.AddSignalR();
+
+
             services.AddIdentity<User, Roles>(options =>
              {
-                 options.User.RequireUniqueEmail = false;
-                 options.Password.RequireDigit = false;
+                 options.User.RequireUniqueEmail = true;
+                 options.Password.RequireDigit = true;
                  options.Password.RequireNonAlphanumeric = false;
-                 options.Password.RequireUppercase = false;
+                 options.Password.RequiredLength = 6;
+                 options.Password.RequireUppercase = true;
              })
              .AddEntityFrameworkStores<MenriChatContext>()
              .AddDefaultTokenProviders();
@@ -60,7 +65,7 @@ namespace WebApplication1
                 x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
                 x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
             })
-                
+
                 .AddJwtBearer(option =>
                 {
                     option.RequireHttpsMetadata = false;
@@ -81,6 +86,7 @@ namespace WebApplication1
             services.AddScoped<IMessageChatUserRepository, MessageChatUserRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<ITokenRepository, TokenRepository>();
+            services.AddScoped<ChatHub>();
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -91,6 +97,7 @@ namespace WebApplication1
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseCors(c => c.WithOrigins("http://localhost:8080").AllowCredentials().AllowAnyHeader().AllowAnyMethod());
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -98,18 +105,17 @@ namespace WebApplication1
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "WebApplication1 v1"));
             }
             app.UseHttpsRedirection();
-            app.UseCors(x =>
-            {
-                x.AllowAnyMethod().AllowAnyHeader().AllowAnyOrigin();
-            });
+           
             app.UseRouting();
             app.UseAuthentication();
+
 
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapHub<ChatHub>("/chat");
             });
         }
     }
