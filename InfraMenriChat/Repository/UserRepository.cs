@@ -20,7 +20,6 @@ namespace InfraMenriChat.Repository
         private readonly IMapper _mapper;
         private readonly MenriChatContext _context;
         private readonly ITokenRepository _tokenRepository;
-        //private DbSet<User> _dbSet;
         private SignInManager<User> _signInManager;
         public UserRepository(UserManager<User> userManager, IMapper mapper, MenriChatContext context, 
             SignInManager<User> signInManager,ITokenRepository tokenRepository)
@@ -29,7 +28,6 @@ namespace InfraMenriChat.Repository
             _mapper = mapper;
             _tokenRepository = tokenRepository;
             _context = context;
-            //_dbSet = _context.Set<User>();
             _signInManager = signInManager;
         }
 
@@ -38,6 +36,18 @@ namespace InfraMenriChat.Repository
 
             return _context.Users.AsEnumerable();
             //return _dbSet.ToList();
+        }
+
+        public User GetByName(string name)
+        {
+            try
+            {
+                return _userManager.Users.FirstOrDefault(users => users.UserName.ToUpper() == name.ToUpper());
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
         }
 
         public async Task<SignInResult> Login(UserViewModel userViewModel)

@@ -16,5 +16,7 @@ namespace InfraMenriChat.Interface
        
         IEnumerable<User> GetAll();
         Task<SignInResult> Login(UserViewModel userViewModel);
+
+        User GetByName(string name);
     }
 }

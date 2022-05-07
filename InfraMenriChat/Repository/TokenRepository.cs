@@ -37,7 +37,7 @@ namespace InfraMenriChat.Repository
                 var claim = new List<Claim>
                 {
                     new Claim(ClaimTypes.Name,userViewModel.Username),
-                    new Claim(ClaimTypes.Role,Roles.ToString())
+                    new Claim(ClaimTypes.Role,String.Join(",",Roles))
                 };
 
                 var credatial = new SigningCredentials(_key, SecurityAlgorithms.HmacSha256Signature);

@@ -49,9 +49,12 @@ namespace WebApplication1.Controllers
             try
             {
                 var statusLogin = await _userRepository.Login(user);
+              
                 if (statusLogin.Succeeded)
                 {
-                    user.Token = await _tokenRepository.GenerateToken(user);
+                    var userComp = _userRepository.GetByName(user.Username);
+                    userComp.Token = await _tokenRepository.GenerateToken(user);
+                    return Ok(userComp);
                 }
                 return Ok(user);
             }

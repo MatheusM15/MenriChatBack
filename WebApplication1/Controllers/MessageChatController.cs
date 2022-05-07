@@ -23,7 +23,6 @@ namespace WebApplication1.Controllers
             _chatHub = chatHub;
         }
 
-        [AllowAnonymous]
         [HttpGet()]
         public IActionResult GetAll()
         {
@@ -51,7 +50,6 @@ namespace WebApplication1.Controllers
                 return BadRequest(e.Message);
             }
         }
-        [AllowAnonymous]
         [HttpPost()]
         public IActionResult Post(MessageChat messageChat)
         {
