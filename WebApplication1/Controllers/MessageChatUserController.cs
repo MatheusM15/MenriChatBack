@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -42,7 +43,7 @@ namespace WebApplication1.Controllers
             {
                 return BadRequest(e.Message);
             }
-        }
+        }   
 
         [AllowAnonymous]
         [HttpGet("Byusuario/{Id}")]
@@ -94,6 +95,26 @@ namespace WebApplication1.Controllers
             catch (Exception e)
             {
                 return BadRequest(e.Message);
+            }
+        }
+        [HttpGet("usuarioOnline/{usuarioselecion}")]
+        public IEnumerable<MessageChat> GetMenssagemByUsuarioOnlineAndUsuarioSelec(Guid usuarioselecion)
+        {
+            var idUSuarioLogado = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            return _messageChatUserRepository.GetAllMenssagemUsuarioLogadoAndUsuarioChat(Guid.Parse(idUSuarioLogado), usuarioselecion);
+
+        }
+
+        [HttpGet("GetByusuarioOnlineByChatId/{conversaId}")]
+        public IActionResult GetByusuarioOnlineByChatId(Guid conversaId)
+        {
+            try
+            {
+                return Ok(_messageChatUserRepository.GetByusuarioOnlineByChatId(conversaId));
+            }
+            catch(Exception ex)
+            {
+                return BadRequest(ex.Message);
             }
         }
     }

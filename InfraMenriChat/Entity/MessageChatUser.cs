@@ -1,4 +1,5 @@
-﻿using System;
+﻿using InfraMenriChat.Entity.Common;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -9,15 +10,20 @@ namespace InfraMenriChat.Entity
 {
     public class MessageChatUser : BaseEntity
     {
-        //[ForeignKey("Usuario")]
-        public Guid UsuarioId { get; set; }
+        [ForeignKey("Conversa")]
+        public Guid ConversaId { get; set; }
         [ForeignKey("MessageChat")]
         public Guid MensagemId { get; set; }
+
+        [ForeignKey("UsuarioRemetende")]
+        public Guid UsuarioEnvioId { get; set; }
+        public bool Lida { get; set; }
 
 
 
         //FK
-        //public virtual User Usuario { get; set; }
-        public virtual MessageChat Mensagem { get; set; }
+        public virtual Conversa Conversa { get; set; }
+        public virtual User UsuarioEnvio { get; set; }
+        public virtual MessageChat MessageChat { get; set; }
     }
 }

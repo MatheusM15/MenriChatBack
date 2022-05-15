@@ -8,7 +8,7 @@ namespace InfraMenriChat.Entity
 {
     public class BaseEntity
     {
-        public Guid Id { get; set; } = new Guid();
+        public Guid Id { get; set; } = Guid.NewGuid();
         public DateTime DtAlteracao { get; set; }
         public DateTime DtInclusao { get; set; }
         public bool Ativo { get; set; }

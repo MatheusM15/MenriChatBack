@@ -4,50 +4,22 @@ using InfraMenriChat.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace InfraMenriChat.Migrations
 {
     [DbContext(typeof(MenriChatContext))]
-    partial class MenriChatContextModelSnapshot : ModelSnapshot
+    [Migration("20220508023139_AdicionandoUsuarionaMenssagemUsuario")]
+    partial class AdicionandoUsuarionaMenssagemUsuario
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.14")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-            modelBuilder.Entity("InfraMenriChat.Entity.Common.Conversa", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<bool>("Ativo")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime>("DtAlteracao")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("DtInclusao")
-                        .HasColumnType("datetime2");
-
-                    b.Property<Guid>("UsuarioPrimarioId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("UsuarioSecundarioId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UsuarioPrimarioId");
-
-                    b.HasIndex("UsuarioSecundarioId");
-
-                    b.ToTable("Conversa");
-                });
 
             modelBuilder.Entity("InfraMenriChat.Entity.MessageChat", b =>
                 {
@@ -81,31 +53,28 @@ namespace InfraMenriChat.Migrations
                     b.Property<bool>("Ativo")
                         .HasColumnType("bit");
 
-                    b.Property<Guid>("ConversaId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<DateTime>("DtAlteracao")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DtInclusao")
                         .HasColumnType("datetime2");
 
-                    b.Property<bool>("Lida")
-                        .HasColumnType("bit");
-
                     b.Property<Guid>("MensagemId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("UsuarioEnvioId")
+                    b.Property<Guid>("UsuarioId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("UsuarioRemetenteId")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ConversaId");
-
                     b.HasIndex("MensagemId");
 
-                    b.HasIndex("UsuarioEnvioId");
+                    b.HasIndex("UsuarioId");
+
+                    b.HasIndex("UsuarioRemetenteId");
 
                     b.ToTable("MenssageChatUsers");
                 });
@@ -308,50 +277,31 @@ namespace InfraMenriChat.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("InfraMenriChat.Entity.Common.Conversa", b =>
-                {
-                    b.HasOne("InfraMenriChat.Entity.User", "UsuarioPrimario")
-                        .WithMany()
-                        .HasForeignKey("UsuarioPrimarioId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("InfraMenriChat.Entity.User", "UsuarioSecundario")
-                        .WithMany()
-                        .HasForeignKey("UsuarioSecundarioId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("UsuarioPrimario");
-
-                    b.Navigation("UsuarioSecundario");
-                });
-
             modelBuilder.Entity("InfraMenriChat.Entity.MessageChatUser", b =>
                 {
-                    b.HasOne("InfraMenriChat.Entity.Common.Conversa", "Conversa")
-                        .WithMany()
-                        .HasForeignKey("ConversaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("InfraMenriChat.Entity.MessageChat", "MessageChat")
+                    b.HasOne("InfraMenriChat.Entity.MessageChat", "Mensagem")
                         .WithMany()
                         .HasForeignKey("MensagemId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("InfraMenriChat.Entity.User", "UsuarioEnvio")
+                    b.HasOne("InfraMenriChat.Entity.User", "Usuario")
                         .WithMany()
-                        .HasForeignKey("UsuarioEnvioId")
+                        .HasForeignKey("UsuarioId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Conversa");
+                    b.HasOne("InfraMenriChat.Entity.User", "UsuarioRemetende")
+                        .WithMany()
+                        .HasForeignKey("UsuarioRemetenteId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Navigation("MessageChat");
+                    b.Navigation("Mensagem");
 
-                    b.Navigation("UsuarioEnvio");
+                    b.Navigation("Usuario");
+
+                    b.Navigation("UsuarioRemetende");
                 });
 
             modelBuilder.Entity("InfraMenriChat.Entity.UserRole", b =>

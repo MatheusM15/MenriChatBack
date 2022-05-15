@@ -4,14 +4,16 @@ using InfraMenriChat.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace InfraMenriChat.Migrations
 {
     [DbContext(typeof(MenriChatContext))]
-    partial class MenriChatContextModelSnapshot : ModelSnapshot
+    [Migration("20220508205002_RemovendoMenssagemUsersConversa")]
+    partial class RemovendoMenssagemUsersConversa
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -89,9 +91,6 @@ namespace InfraMenriChat.Migrations
 
                     b.Property<DateTime>("DtInclusao")
                         .HasColumnType("datetime2");
-
-                    b.Property<bool>("Lida")
-                        .HasColumnType("bit");
 
                     b.Property<Guid>("MensagemId")
                         .HasColumnType("uniqueidentifier");

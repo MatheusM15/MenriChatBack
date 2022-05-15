@@ -86,6 +86,7 @@ namespace WebApplication1
             services.AddScoped<IMessageChatUserRepository, MessageChatUserRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<ITokenRepository, TokenRepository>();
+            services.AddScoped<IConversaRepository, ConversaRepository>();
             services.AddScoped<ChatHub>();
             services.AddControllers();
             services.AddSwaggerGen(c =>

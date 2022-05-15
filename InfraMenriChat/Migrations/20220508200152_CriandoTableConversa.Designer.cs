@@ -4,14 +4,16 @@ using InfraMenriChat.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace InfraMenriChat.Migrations
 {
     [DbContext(typeof(MenriChatContext))]
-    partial class MenriChatContextModelSnapshot : ModelSnapshot
+    [Migration("20220508200152_CriandoTableConversa")]
+    partial class CriandoTableConversa
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -34,6 +36,9 @@ namespace InfraMenriChat.Migrations
                     b.Property<DateTime>("DtInclusao")
                         .HasColumnType("datetime2");
 
+                    b.Property<Guid>("MessageChatUserId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<Guid>("UsuarioPrimarioId")
                         .HasColumnType("uniqueidentifier");
 
@@ -41,6 +46,8 @@ namespace InfraMenriChat.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("MessageChatUserId");
 
                     b.HasIndex("UsuarioPrimarioId");
 
@@ -89,9 +96,6 @@ namespace InfraMenriChat.Migrations
 
                     b.Property<DateTime>("DtInclusao")
                         .HasColumnType("datetime2");
-
-                    b.Property<bool>("Lida")
-                        .HasColumnType("bit");
 
                     b.Property<Guid>("MensagemId")
                         .HasColumnType("uniqueidentifier");
@@ -310,6 +314,12 @@ namespace InfraMenriChat.Migrations
 
             modelBuilder.Entity("InfraMenriChat.Entity.Common.Conversa", b =>
                 {
+                    b.HasOne("InfraMenriChat.Entity.MessageChatUser", "MessageChatUser")
+                        .WithMany()
+                        .HasForeignKey("MessageChatUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("InfraMenriChat.Entity.User", "UsuarioPrimario")
                         .WithMany()
                         .HasForeignKey("UsuarioPrimarioId")
@@ -321,6 +331,8 @@ namespace InfraMenriChat.Migrations
                         .HasForeignKey("UsuarioSecundarioId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("MessageChatUser");
 
                     b.Navigation("UsuarioPrimario");
 

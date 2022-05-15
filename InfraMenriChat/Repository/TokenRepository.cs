@@ -37,6 +37,7 @@ namespace InfraMenriChat.Repository
                 var claim = new List<Claim>
                 {
                     new Claim(ClaimTypes.Name,userViewModel.Username),
+                    new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
                     new Claim(ClaimTypes.Role,String.Join(",",Roles))
                 };
 
